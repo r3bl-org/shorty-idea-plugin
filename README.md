@@ -5,6 +5,10 @@ An IntelliJ IDEA plugin that shortens long URLs to short ones (using tinyurl.com
 1. This functionality is exposed as an action called "Shorten URL" in the editor window.
 2. In preferences, you can enable shortening all long links in a Markdown file when it has been saved.
 
+## JetBrains Plugin Marketplace listing
+
+It is published in the JetBrains Plugin Marketplace [here](https://plugins.jetbrains.com/plugin/14120-shorty--url-shortener).
+
 ## License
 
 Copyright 2020 R3BL, LLC.

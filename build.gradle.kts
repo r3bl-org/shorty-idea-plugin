@@ -49,3 +49,10 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.11.1")
     testImplementation("junit:junit:4.13")
 }
+
+// JetBrains Marketplace related.
+tasks.publishPlugin {
+    val intellijPublishToken: String? by project
+    token(intellijPublishToken)
+    // token(project.findProperty(intellijPublishToken) as String?)
+}
