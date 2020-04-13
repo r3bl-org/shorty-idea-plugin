@@ -52,7 +52,9 @@ dependencies {
 
 // JetBrains Marketplace related.
 tasks.publishPlugin {
+    // The property named "intellijPublishToken" is loaded from gradle.properties file.
     val intellijPublishToken: String? by project
     token(intellijPublishToken)
+    // The following line does the same thing as above:
     // token(project.findProperty(intellijPublishToken) as String?)
 }
