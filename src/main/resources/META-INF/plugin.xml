@@ -1,4 +1,4 @@
-<idea-plugin url="https://github.com/r3bl-org/shorty-idea-plugin">
+<idea-plugin url="https://r3bl.com">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
   <version>1.0</version>
@@ -7,10 +7,10 @@
   </vendor>
 
   <!--
-    More info: Please read http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
     ⚠️ Make sure that the numbers here sync with the numbers in the `build.gradle.kts` file:
     `intelliJ { version = "... " }`. These have to be kept in sync, otherwise IDEA will refuse to install this plugin
     complaining that it is not compatible.
+    💡 More info: Please read http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
   -->
   <idea-version since-build="2020.1" until-build="2020.*" />
 
@@ -18,24 +18,29 @@
     <![CDATA[
     Shortens long URLs to short ones (using tinyurl.com) in Markdown files.
     <ol>
-      <li>This functionality is exposed as an action called "Shorten URL" in the editor window.
-      <li>In preferences, you can enable shortening all long links in a Markdown file when it has been saved.
+      <li>This functionality is exposed as an action called "Shorten URL" in the editor window.</li>
+      <li>In preferences, you can enable shortening all long links in a Markdown file when it has been saved.</li>
     </ol>
     ]]>
-
-    2.
   </description>
 
   <!--
-    More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
     ⚠️ The text in `change-notes` is paired with the version from `build.gradle.kts` file. Every time this plugin code
     is pushed into the JetBrains Plugin Marketplace, make sure to provide only the change notes for the current version.
     JetBrains figures out how to correlate the notes for each version. Do not make the mistake that some other plugins
     do of putting all the change notes from all the previous versions into this field.
+    💡 More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
   -->
   <change-notes>
     Initial release of the plugin with action and bulk change listener.
   </change-notes>
+
+  <!--
+    ⚠️ Declare dependency on IntelliJ module `com.intellij.modules.platform` which provides the following:
+    Messaging, UI Themes, UI Components, Files, Documents, Actions, Components, Services, Extensions, Editors
+    💡 More info: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+  -->
+  <depends>com.intellij.modules.platform</depends>
 
   <!-- Markdown plugin. -->
   <depends>org.intellij.plugins.markdown</depends>
