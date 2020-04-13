@@ -1,8 +1,8 @@
-<idea-plugin>
+<idea-plugin url="https://github.com/r3bl-org/shorty-idea-plugin">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
   <version>1.0</version>
-  <vendor email="support@r3bl.com" url="https://github.com/r3bl-org/shorty-idea-plugin">
+  <vendor email="support@r3bl.com" url="https://r3bl.com/">
     R3BL LLC
   </vendor>
 
@@ -18,12 +18,8 @@
     <![CDATA[
     Shortens long URLs to short ones (using tinyurl.com) in Markdown files.
     <ol>
-      <li>
-      This functionality is exposed as an action called "Shorten URL" in the editor window.
-      </li>
-      <li>
-      In preferences, you can enable shortening all long links in a Markdown file when it has been saved.
-      </li>
+      <li>This functionality is exposed as an action called "Shorten URL" in the editor window.
+      <li>In preferences, you can enable shortening all long links in a Markdown file when it has been saved.
     </ol>
     ]]>
 

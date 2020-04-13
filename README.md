@@ -9,6 +9,11 @@ An IntelliJ IDEA plugin that shortens long URLs to short ones (using tinyurl.com
 
 It is published in the JetBrains Plugin Marketplace [here](https://plugins.jetbrains.com/plugin/14120-shorty--url-shortener).
 
+Here are some references that are useful for uploading plugins:
+1. [Publishing Plugins with Gradle](https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html)
+2. [Upload plugin to marketplace manually](https://plugins.jetbrains.com/plugin/add#intellij)
+
+
 ## License
 
 Copyright 2020 R3BL, LLC.
