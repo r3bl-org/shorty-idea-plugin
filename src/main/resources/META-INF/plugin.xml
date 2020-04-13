@@ -1,0 +1,65 @@
+<idea-plugin>
+  <id>com.r3bl.plugins.shorty</id>
+  <name>Shorty - URL Shortener</name>
+  <version>1.0</version>
+  <vendor email="support@r3bl.com" url="https://github.com/r3bl-org/shorty-idea-plugin">
+    R3BL LLC
+  </vendor>
+
+  <!--
+    More info: Please read http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
+    ⚠️ Make sure that the numbers here sync with the numbers in the `build.gradle.kts` file:
+    `intelliJ { version = "... " }`. These have to be kept in sync, otherwise IDEA will refuse to install this plugin
+    complaining that it is not compatible.
+  -->
+  <idea-version since-build="2020.1" until-build="2020.*" />
+
+  <description>
+    <![CDATA[
+    Shortens long URLs to short ones (using tinyurl.com) in Markdown files.
+    <ol>
+      <li>
+      This functionality is exposed as an action called "Shorten URL" in the editor window.
+      </li>
+      <li>
+      In preferences, you can enable shortening all long links in a Markdown file when it has been saved.
+      </li>
+    </ol>
+    ]]>
+
+    2.
+  </description>
+
+  <!--
+    More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
+    ⚠️ The text in `change-notes` is paired with the version from `build.gradle.kts` file. Every time this plugin code
+    is pushed into the JetBrains Plugin Marketplace, make sure to provide only the change notes for the current version.
+    JetBrains figures out how to correlate the notes for each version. Do not make the mistake that some other plugins
+    do of putting all the change notes from all the previous versions into this field.
+  -->
+  <change-notes>
+    Initial release of the plugin with action and bulk change listener.
+  </change-notes>
+
+  <!-- Markdown plugin. -->
+  <depends>org.intellij.plugins.markdown</depends>
+
+  <!-- Add action to replace inline link in Markdown file with something else. -->
+  <actions>
+    <action id="Shorty.EditorReplaceLink" class="actions.EditorReplaceLink" text="Shorten URL"
+        description="Replace URL with shortlink" icon="/icons/ic_extension.svg">
+      <add-to-group group-id="EditorPopupMenu" anchor="first" />
+    </action>
+  </actions>
+
+  <!-- Extension to run some code post startup. More info: https://tinyurl.com/ufd64mk. -->
+  <extensions defaultExtensionNs="com.intellij">
+    <postStartupActivity implementation="vfs.VFSListenerStartupActivity" />
+  </extensions>
+
+  <!-- Add Preferences dialog panel from `SettingsUIPanel.kt`. -->
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable instance="ui.SettingsUIConfigurable" />
+  </extensions>
+
+</idea-plugin>
