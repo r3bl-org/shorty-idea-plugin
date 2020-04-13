@@ -1,5 +1,6 @@
 package actions
 
+import ColorConsoleContext.Companion.colorConsole
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -9,6 +10,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import psi.findLink
 import vfs.getMarkdownPsiFile
+import java.awt.Color
 
 /**
  * There are other ways to access an [Editor] instance:
@@ -53,3 +55,53 @@ fun mustHaveLinkSelected(e: AnActionEvent) {
 
   e.presentation.isEnabledAndVisible = linkNode != null
 }
+
+/**
+ * DSL to run a sequence of lambdas as long as the condition is met. As soon as the condition is not met, execution
+ * stops.
+ */
+fun createConditionalRunnerScope(block: FunctionCollector.() -> Unit) {
+  val myFunctionCollector = FunctionCollector()
+  block(myFunctionCollector)
+}
+
+class FunctionCollector() {
+  lateinit var conditionBlock: () -> Boolean
+  val lambdaList: MutableList<() -> Unit> = mutableListOf()
+
+  fun condition(block: () -> Boolean) {
+    conditionBlock = block
+  }
+
+  fun addLambda(block: () -> Unit) {
+    lambdaList.add(block)
+  }
+
+  fun runEachLambdaUntilConditionNotMet() {
+    for (function in lambdaList) {
+      colorConsole {
+        printLine {
+          if (conditionBlock()) span(Colors.Green, "Condition == true")
+          else span(Colors.Red, "Condition == false")
+        }
+      }
+      if (conditionBlock()) {
+        colorConsole {
+          printLine {
+            span(Colors.Green, "invoking function")
+          }
+        }
+        function()
+      }
+      else {
+        colorConsole {
+          printLine {
+            span(Colors.Red, "breaking out of runEachUntilConditionNotMet()")
+          }
+        }
+        return
+      }
+    }
+  }
+}
+

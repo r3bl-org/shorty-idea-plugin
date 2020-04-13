@@ -4,11 +4,9 @@ import ColorConsoleContext.Companion.colorConsole
 import Colors
 import actions.EditorReplaceLink.RunningState.*
 import com.google.common.annotations.VisibleForTesting
-import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Editor
@@ -25,7 +23,6 @@ import psi.findLink
 import psi.replaceExistingLinkWith
 import urlshortenservice.ShortenUrlService
 import urlshortenservice.TinyUrl
-import vfs.getMarkdownPsiFile
 import java.awt.datatransfer.StringSelection
 
 class EditorReplaceLink(val shortenUrlService: ShortenUrlService = TinyUrl()) : AnAction() {
@@ -138,9 +135,5 @@ class EditorReplaceLink(val shortenUrlService: ShortenUrlService = TinyUrl()) : 
     return true
   }
 
-  override fun update(e: AnActionEvent) {
-    mustHaveProjectAndEditor(e)
-    mustBeMarkdownDocument(e)
-    mustHaveLinkSelected(e)
-  }
+  override fun update(e: AnActionEvent) = mustHaveLinkSelected(e)
 }

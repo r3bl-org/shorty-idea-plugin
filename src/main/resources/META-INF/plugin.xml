@@ -1,7 +1,7 @@
 <idea-plugin url="https://r3bl.com">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <vendor email="support@r3bl.com" url="https://r3bl.com/">
     R3BL LLC
   </vendor>
@@ -32,7 +32,7 @@
     💡 More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
   -->
   <change-notes>
-    Initial release of the plugin with action and bulk change listener.
+    Minor performance improvement in determining whether action should be hidden or not in an editor.
   </change-notes>
 
   <!--
