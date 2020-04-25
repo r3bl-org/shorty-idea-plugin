@@ -43,8 +43,15 @@ fun mustBeMarkdownDocument(e: AnActionEvent) {
 }
 
 fun mustHaveLinkSelected(e: AnActionEvent) {
-  val editor = e.getRequiredData(PlatformDataKeys.EDITOR)
-  val psiFile = e.getRequiredData(CommonDataKeys.PSI_FILE)
+  val project = e.project
+  val editor = e.getData(CommonDataKeys.EDITOR)
+  val psiFile = e.getData(CommonDataKeys.PSI_FILE)
+
+  // Project is being disposed or require IDE objects are not available.
+  if (project?.isDisposed == true || editor == null || psiFile == null) {
+    e.presentation.isEnabledAndVisible = false
+    return
+  }
 
   // Acquire a read lock in order to find the link information.
   val linkNode = runReadAction {
