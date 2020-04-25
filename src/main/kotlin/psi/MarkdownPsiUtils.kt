@@ -13,6 +13,7 @@ import com.intellij.psi.search.PsiElementProcessor
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
 import com.intellij.psi.util.PsiTreeUtil
+import org.intellij.plugins.markdown.lang.MarkdownElementTypes
 import org.intellij.plugins.markdown.lang.MarkdownTokenTypeSets
 import org.intellij.plugins.markdown.lang.MarkdownTokenTypes
 import org.intellij.plugins.markdown.lang.psi.MarkdownPsiElementFactory
@@ -147,7 +148,8 @@ fun findLink(element: PsiElement?, psiFile: PsiFile, checkCancelled: CheckCancel
   }
 
   // Find the first parent of the element at the caret, which is a link.
-  val parentLinkElement = findParentElement(element, MarkdownTokenTypeSets.LINKS, checkCancelled)
+  val parentTokenSetToMatch = TokenSet.create(MarkdownElementTypes.INLINE_LINK)
+  val parentLinkElement = findParentElement(element, parentTokenSetToMatch, checkCancelled)
 
   val linkTextElement =
       findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_TEXT, checkCancelled)
