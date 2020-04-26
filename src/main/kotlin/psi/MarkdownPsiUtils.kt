@@ -153,12 +153,10 @@ fun findLink(element: PsiElement?, psiFile: PsiFile, checkCancelled: CheckCancel
 
   val linkTextElement =
       findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_TEXT, checkCancelled)
-  val textElement =
-      findChildElement(linkTextElement, MarkdownTokenTypes.TEXT, checkCancelled)
   val linkDestinationElement =
       findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_DESTINATION, checkCancelled)
 
-  val linkText = textElement?.text
+  val linkText = linkTextElement?.text?.removePrefix("[")?.removeSuffix("]")
   val linkDestination = linkDestinationElement?.text
 
   if (linkText == null || linkDestination == null || parentLinkElement == null) return null
