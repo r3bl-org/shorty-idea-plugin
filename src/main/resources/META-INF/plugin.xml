@@ -1,7 +1,7 @@
 <idea-plugin url="https://r3bl.com">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
-  <version>1.3</version>
+  <version>1.4</version>
   <vendor email="support@r3bl.com" url="https://r3bl.com/">
     R3BL LLC
   </vendor>
@@ -32,8 +32,7 @@
     💡 More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
   -->
   <change-notes>
-    Fix occasional errors when checking whether action should be enabled. Fix bug that clobbers non trivial URL text.
-    Add better test cases.
+    Update plugin to support IntelliJ Platform 2020.2.
   </change-notes>
 
   <!--

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.r3bl.plugins"
-version = "1.3"
+version = "1.4"
 
 repositories {
     mavenCentral()
@@ -23,13 +23,13 @@ intellij {
     // You can use release build numbers or snapshot name for the version.
     // 1) IJ Release Repository w/ build numbers https://www.jetbrains.com/intellij-repository/releases/
     // 2) IJ Snapshots Repository w/ snapshot names https://www.jetbrains.com/intellij-repository/snapshots/
-    version = "2020.1" // You can also use LATEST-EAP-SNAPSHOT here.
+    version = "202-EAP-SNAPSHOT" // You can also use LATEST-EAP-SNAPSHOT here.
 
     // Declare a dependency on the markdown plugin to be able to access the
     // MarkdownRecursiveElementVisitor.kt file. More info:
     // https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
     // https://plugins.jetbrains.com/plugin/7793-markdown/versions
-    setPlugins("java", "org.intellij.plugins.markdown:201.6668.27")
+    setPlugins("java", "org.intellij.plugins.markdown:202.6397.21")
 }
 
 tasks {
