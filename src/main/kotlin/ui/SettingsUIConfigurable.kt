@@ -1,7 +1,8 @@
 package ui
 
-import ColorConsoleContext.Companion.colorConsole
-import Colors
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors.Blue
+import color_console_log.Colors.Green
 import com.intellij.openapi.options.BoundConfigurable
 import com.intellij.openapi.ui.DialogPanel
 
@@ -12,7 +13,7 @@ class SettingsUIConfigurable : BoundConfigurable("Shorty - URL Shortener") {
   override fun apply() {
     colorConsole {
       printLine {
-        span(Colors.Green, "KotlinDSLUISampleConfigurable apply() called")
+        span(Green, "KotlinDSLUISampleConfigurable apply() called")
       }
     }
     super.apply()
@@ -21,7 +22,7 @@ class SettingsUIConfigurable : BoundConfigurable("Shorty - URL Shortener") {
   override fun cancel() {
     colorConsole {
       printLine {
-        span(Colors.Green, "KotlinDSLUISampleConfigurable cancel() called")
+        span(Green, "KotlinDSLUISampleConfigurable cancel() called")
       }
     }
     super.cancel()
@@ -31,8 +32,8 @@ class SettingsUIConfigurable : BoundConfigurable("Shorty - URL Shortener") {
   override fun isModified(): Boolean {
     colorConsole {
       printLine {
-        span(Colors.Green, "KotlinDSLUISampleConfigurable isModified() called")
-        span(Colors.Blue, "return ${super.isModified()}")
+        span(Green, "KotlinDSLUISampleConfigurable isModified() called")
+        span(Blue, "return ${super.isModified()}")
       }
     }
     return super.isModified()
@@ -41,7 +42,7 @@ class SettingsUIConfigurable : BoundConfigurable("Shorty - URL Shortener") {
   override fun reset() {
     colorConsole {
       printLine {
-        span(Colors.Green, "KotlinDSLUISampleConfigurable reset() called")
+        span(Green, "KotlinDSLUISampleConfigurable reset() called")
       }
     }
     super.reset()

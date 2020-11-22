@@ -1,7 +1,7 @@
 package ui
 
-import ColorConsoleContext.Companion.colorConsole
-import Colors
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors.*
 import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.components.*
 import com.intellij.openapi.ui.DialogPanel
@@ -20,7 +20,7 @@ fun createDialogPanel(): DialogPanel {
     noteRow("""This plugin is <a href="https://github.com/r3bl-org/shorty-idea-plugin">open source️</a> 💙️""") {
       colorConsole {
         printLine {
-          span(Colors.Purple, "link url: '$it' clicked")
+          span(Purple, "link url: '$it' clicked")
         }
       }
       BrowserUtil.browse(it)
@@ -42,7 +42,7 @@ class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
   override fun getState(): State {
     colorConsole {
       printLine {
-        span(Colors.Purple, "SettingsUIData.getState(): $myState")
+        span(Purple, "SettingsUIData.getState(): $myState")
       }
     }
     return myState
@@ -51,7 +51,7 @@ class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
   override fun loadState(stateLoadedFromPersistence: State) {
     colorConsole {
       printLine {
-        span(Colors.Purple, "SettingsUIData.loadState(): $stateLoadedFromPersistence")
+        span(Purple, "SettingsUIData.loadState(): $stateLoadedFromPersistence")
       }
     }
     myState = stateLoadedFromPersistence
@@ -71,8 +71,8 @@ class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
       override fun getValue(thisRef: R, property: KProperty<*>): T {
         colorConsole {
           printLine {
-            span(Colors.Blue, "State::${property.name}.getValue()")
-            span(Colors.Green, "value: '$backingField'")
+            span(Blue, "State::${property.name}.getValue()")
+            span(Green, "value: '$backingField'")
           }
         }
         return backingField
@@ -82,8 +82,8 @@ class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
         backingField = value
         colorConsole {
           printLine {
-            span(Colors.Blue, "State::${property.name}.setValue()")
-            span(Colors.Green, "value: '$backingField'")
+            span(Blue, "State::${property.name}.setValue()")
+            span(Green, "value: '$backingField'")
           }
         }
       }

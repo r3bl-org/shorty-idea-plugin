@@ -1,7 +1,8 @@
 package vfs
 
-import ColorConsoleContext.Companion.colorConsole
-import Colors
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors
+import color_console_log.Colors.*
 import com.intellij.AppTopics
 import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.command.WriteCommandAction
@@ -17,6 +18,8 @@ import com.intellij.openapi.startup.StartupActivity
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
 import org.intellij.plugins.markdown.lang.MarkdownTokenTypeSets
+import printDebugHeader
+import printWhichThread
 import psi.*
 import ui.SettingsUIData
 import urlshortenservice.ShortenUrlService
@@ -29,7 +32,7 @@ class VFSListenerStartupActivity : StartupActivity {
   override fun runActivity(project: Project) {
     colorConsole {
       printLine {
-        span(Colors.Purple, "postStartupActivity running")
+        span(Purple, "postStartupActivity running")
       }
     }
     VFSListenerLightService.getInstance(project).registerListener()
@@ -51,7 +54,7 @@ class VFSListenerLightService(
   fun registerListener() {
     colorConsole {
       printLine {
-        span(Colors.Purple, "registerListener() running")
+        span(Purple, "registerListener() running")
       }
     }
     val connection = project.messageBus.connect(/*parentDisposable=*/ project)
@@ -78,10 +81,10 @@ class ReplaceLongLinksInMarkdownFileOnSave(
       printDebugHeader()
       printWhichThread()
       printLine {
-        span(Colors.Purple, "project: $project")
+        span(Purple, "project: $project")
       }
       printLine {
-        span(Colors.Blue, "A VirtualFile is about to be saved\n")
+        span(Blue, "A VirtualFile is about to be saved\n")
         span("\tvFile: $vFile\n")
         span("\tdocument: $document\n")
       }
@@ -95,7 +98,7 @@ class ReplaceLongLinksInMarkdownFileOnSave(
     else {
       colorConsole {
         printLine {
-          span(Colors.Red, "⚠️ myFlag is false -> do nothing ⚠️")
+          span(Red, "⚠️ myFlag is false -> do nothing ⚠️")
         }
       }
     }
@@ -115,9 +118,9 @@ class ReplaceLongLinksInMarkdownFileOnSave(
 
       colorConsole {
         printLine {
-          span(Colors.Red, "️⚠️ Shorten links ⚠️")
-          span(Colors.Green, "size: ${linkNodes.size}")
-          span(Colors.Green, linkNodes.toString())
+          span(Red, "️⚠️ Shorten links ⚠️")
+          span(Green, "size: ${linkNodes.size}")
+          span(Green, linkNodes.toString())
         }
       }
 
@@ -135,7 +138,7 @@ class ReplaceLongLinksInMarkdownFileOnSave(
         colorConsole {
           printWhichThread()
           printLine {
-            span(Colors.Green, "🔥 Running write action to replace links 🔥")
+            span(Green, "🔥 Running write action to replace links 🔥")
           }
         }
         linkNodes.forEach { replaceExistingLinkWith(project, it, checkCancelled) }
@@ -148,7 +151,7 @@ class ReplaceLongLinksInMarkdownFileOnSave(
 
     colorConsole {
       printLine {
-        span(Colors.Red, "🔥 Process Markdown file 🔥")
+        span(Red, "🔥 Process Markdown file 🔥")
       }
     }
 
@@ -158,8 +161,8 @@ class ReplaceLongLinksInMarkdownFileOnSave(
 
     colorConsole {
       printLine {
-        span(Colors.Purple, "size of collected link elements")
-        span(Colors.Green, linkElements.size.toString())
+        span(Purple, "size of collected link elements")
+        span(Green, linkElements.size.toString())
       }
     }
 
@@ -167,8 +170,8 @@ class ReplaceLongLinksInMarkdownFileOnSave(
       val linkNode = findLink(element, psiFile, checkCancelled)
       colorConsole {
         printLine {
-          span(Colors.Purple, "linkNode")
-          span(Colors.Green, "${linkNode ?: "null"}")
+          span(Purple, "linkNode")
+          span(Green, "${linkNode ?: "null"}")
         }
       }
       if (shouldAccept(linkNode)) links.add(linkNode!!)

@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.intellij") version "0.4.16"
-    kotlin("jvm") version "1.3.70"
+    id("org.jetbrains.intellij") version "0.6.4"
+    kotlin("jvm") version "1.4.0"
 }
 
 group = "com.r3bl.plugins"
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 }
 
@@ -23,21 +23,25 @@ intellij {
     // You can use release build numbers or snapshot name for the version.
     // 1) IJ Release Repository w/ build numbers https://www.jetbrains.com/intellij-repository/releases/
     // 2) IJ Snapshots Repository w/ snapshot names https://www.jetbrains.com/intellij-repository/snapshots/
-    version = "202-EAP-SNAPSHOT" // You can also use LATEST-EAP-SNAPSHOT here.
+    version = "203.5981-EAP-CANDIDATE-SNAPSHOT" // You can also use LATEST-EAP-SNAPSHOT here.
 
     // Declare a dependency on the markdown plugin to be able to access the
     // MarkdownRecursiveElementVisitor.kt file. More info:
     // https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
     // https://plugins.jetbrains.com/plugin/7793-markdown/versions
-    setPlugins("java", "org.intellij.plugins.markdown:202.6397.21")
+    setPlugins("java", "org.intellij.plugins.markdown:203.5981.37")
 }
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.languageVersion = "1.4"
+        kotlinOptions.apiVersion = "1.4"
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.languageVersion = "1.4"
+        kotlinOptions.apiVersion = "1.4"
     }
 }
 
@@ -57,4 +61,19 @@ tasks.publishPlugin {
     token(intellijPublishToken)
     // The following line does the same thing as above:
     // token(project.findProperty(intellijPublishToken) as String?)
+}
+
+tasks {
+    runPluginVerifier {
+        ideVersions(listOf<String>("2020.1.4", "2020.2.3", "2020.3"))
+    }
+}
+
+// Add color-console library.
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation("com.developerlife:color-console:1.0")
 }

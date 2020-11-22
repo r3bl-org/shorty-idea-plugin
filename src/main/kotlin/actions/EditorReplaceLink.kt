@@ -1,7 +1,7 @@
 package actions
 
-import ColorConsoleContext.Companion.colorConsole
-import Colors
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors
 import actions.EditorReplaceLink.RunningState.*
 import com.google.common.annotations.VisibleForTesting
 import com.intellij.openapi.actionSystem.AnAction
@@ -18,6 +18,8 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import isPluginInUnitTestMode
 import notify
+import printDebugHeader
+import printWhichThread
 import psi.CheckCancelled
 import psi.findLink
 import psi.replaceExistingLinkWith

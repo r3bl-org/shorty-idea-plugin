@@ -11,6 +11,9 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="11">
+      <module name="com.r3bl.plugins.shorty.main" target="11" />
+      <module name="com.r3bl.plugins.shorty.test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

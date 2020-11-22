@@ -1,7 +1,7 @@
 package actions
 
-import ColorConsoleContext.Companion.colorConsole
-import Colors
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors
 import TestFile
 import TestUtils.Companion.computeBasePath
 import com.intellij.openapi.ide.CopyPasteManager
@@ -9,6 +9,8 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
+import printDebugHeader
+import printWhichThread
 import urlshortenservice.ShortenUrlService
 import java.awt.datatransfer.DataFlavor
 import java.util.concurrent.Executors

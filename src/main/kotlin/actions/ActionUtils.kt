@@ -1,6 +1,8 @@
 package actions
 
-import ColorConsoleContext.Companion.colorConsole
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors.Green
+import color_console_log.Colors.Red
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.actionSystem.PlatformDataKeys
@@ -10,7 +12,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import psi.findLink
 import vfs.getMarkdownPsiFile
-import java.awt.Color
 
 /**
  * There are other ways to access an [Editor] instance:
@@ -88,14 +89,14 @@ class FunctionCollector() {
     for (function in lambdaList) {
       colorConsole {
         printLine {
-          if (conditionBlock()) span(Colors.Green, "Condition == true")
-          else span(Colors.Red, "Condition == false")
+          if (conditionBlock()) span(Green, "Condition == true")
+          else span(Red, "Condition == false")
         }
       }
       if (conditionBlock()) {
         colorConsole {
           printLine {
-            span(Colors.Green, "invoking function")
+            span(Green, "invoking function")
           }
         }
         function()
@@ -103,7 +104,7 @@ class FunctionCollector() {
       else {
         colorConsole {
           printLine {
-            span(Colors.Red, "breaking out of runEachUntilConditionNotMet()")
+            span(Red, "breaking out of runEachUntilConditionNotMet()")
           }
         }
         return
