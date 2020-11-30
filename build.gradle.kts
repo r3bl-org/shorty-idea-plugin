@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.intellij") version "0.6.4"
-    kotlin("jvm") version "1.4.0"
+    id("org.jetbrains.intellij") version "0.6.5"
+    kotlin("jvm") version "1.4.20"
 }
 
 group = "com.r3bl.plugins"
@@ -29,7 +29,7 @@ intellij {
     // MarkdownRecursiveElementVisitor.kt file. More info:
     // https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
     // https://plugins.jetbrains.com/plugin/7793-markdown/versions
-    setPlugins("java", "org.intellij.plugins.markdown:203.5981.37")
+    setPlugins("java", "markdown")
 }
 
 tasks {
