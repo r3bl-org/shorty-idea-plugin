@@ -1,9 +1,9 @@
 package actions
 
-import color_console_log.ColorConsoleContext.Companion.colorConsole
-import color_console_log.Colors
 import TestFile
 import TestUtils.Companion.computeBasePath
+import color_console_log.ColorConsoleContext.Companion.colorConsole
+import color_console_log.Colors
 import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import org.assertj.core.api.Assertions.assertThat
@@ -95,8 +95,7 @@ class EditorReplaceLinkTest : BasePlatformTestCase() {
         if (action.isRunning() == EditorReplaceLink.RunningState.IS_CANCELLED || action.isRunning() == EditorReplaceLink.RunningState.HAS_STOPPED) {
           executor.shutdown()
           break
-        }
-        else shortSleep()
+        } else shortSleep()
       }
     }
 

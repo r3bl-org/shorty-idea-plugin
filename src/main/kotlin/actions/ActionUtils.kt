@@ -23,7 +23,7 @@ fun mustHaveProjectAndEditorAndTextSelection(e: AnActionEvent) {
   val editor: Editor? = e.getData(CommonDataKeys.EDITOR)
   // Action visible only if the editor in the open project has text selected.
   e.presentation.isEnabledAndVisible =
-      project != null
+    project != null
       && editor != null
       && editor.selectionModel.hasSelection()
 }
@@ -32,7 +32,7 @@ fun mustHaveProjectAndEditor(e: AnActionEvent) {
   val project: Project? = e.project
   val editor: Editor? = e.getData(CommonDataKeys.EDITOR)
   e.presentation.isEnabledAndVisible =
-      project != null
+    project != null
       && editor != null
 }
 
@@ -100,8 +100,7 @@ class FunctionCollector() {
           }
         }
         function()
-      }
-      else {
+      } else {
         colorConsole {
           printLine {
             span(Red, "breaking out of runEachUntilConditionNotMet()")

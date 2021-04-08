@@ -1,8 +1,8 @@
 package actions
 
+import actions.EditorReplaceLink.RunningState.*
 import color_console_log.ColorConsoleContext.Companion.colorConsole
 import color_console_log.Colors
-import actions.EditorReplaceLink.RunningState.*
 import com.google.common.annotations.VisibleForTesting
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -79,12 +79,11 @@ class EditorReplaceLink(val shortenUrlService: ShortenUrlService = TinyUrl()) : 
   fun isRunning(): RunningState {
     if (myIndicator == null) {
       return NOT_STARTED
-    }
-    else {
+    } else {
       return when {
         myIndicator!!.isCanceled -> IS_CANCELLED
-        myIndicator!!.isRunning  -> IS_RUNNING
-        else                     -> HAS_STOPPED
+        myIndicator!!.isRunning -> IS_RUNNING
+        else -> HAS_STOPPED
       }
     }
   }

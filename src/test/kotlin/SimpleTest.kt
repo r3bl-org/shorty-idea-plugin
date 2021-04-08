@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 /** This is a simple test just for demonstration purposes. */
-class SimpleTest: BasePlatformTestCase() {
+class SimpleTest : BasePlatformTestCase() {
 
   @Test
   fun testA() {

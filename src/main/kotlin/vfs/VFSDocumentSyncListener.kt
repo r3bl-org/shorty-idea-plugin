@@ -1,7 +1,6 @@
 package vfs
 
 import color_console_log.ColorConsoleContext.Companion.colorConsole
-import color_console_log.Colors
 import color_console_log.Colors.*
 import com.intellij.AppTopics
 import com.intellij.openapi.application.runReadAction
@@ -41,8 +40,8 @@ class VFSListenerStartupActivity : StartupActivity {
 
 @Service
 class VFSListenerLightService(
-    /** One instance of this service is created per project. */
-    private val project: Project
+  /** One instance of this service is created per project. */
+  private val project: Project
 ) {
   companion object {
     /**
@@ -63,16 +62,16 @@ class VFSListenerLightService(
 }
 
 class VFSDocumentSyncListener(
-    private val project: Project,
-    private val shortenUrlService: ShortenUrlService = TinyUrl()
+  private val project: Project,
+  private val shortenUrlService: ShortenUrlService = TinyUrl()
 ) : FileDocumentManagerListener {
   override fun beforeDocumentSaving(document: Document) =
-      ReplaceLongLinksInMarkdownFileOnSave(project, shortenUrlService).execute(document)
+    ReplaceLongLinksInMarkdownFileOnSave(project, shortenUrlService).execute(document)
 }
 
 class ReplaceLongLinksInMarkdownFileOnSave(
-    private val project: Project,
-    private val shortenUrlService: ShortenUrlService
+  private val project: Project,
+  private val shortenUrlService: ShortenUrlService
 ) {
   fun execute(document: Document) {
     val vFile = FileDocumentManager.getInstance().getFile(document)
@@ -94,8 +93,7 @@ class ReplaceLongLinksInMarkdownFileOnSave(
       object : Task.Backgroundable(project, "🔥 Run background task on save Markdown file 🔥") {
         override fun run(indicator: ProgressIndicator) = doWorkInBackground(document, indicator)
       }.queue()
-    }
-    else {
+    } else {
       colorConsole {
         printLine {
           span(Red, "⚠️ myFlag is false -> do nothing ⚠️")
@@ -181,10 +179,10 @@ class ReplaceLongLinksInMarkdownFileOnSave(
   }
 
   private fun shouldAccept(linkNode: LinkNode?): Boolean = when {
-    linkNode == null                                           -> false
+    linkNode == null -> false
     linkNode.linkDestination.startsWith("https://tinyurl.com") -> false
-    linkNode.linkDestination.startsWith("http")                -> true
-    else                                                       -> false
+    linkNode.linkDestination.startsWith("http") -> true
+    else -> false
   }
 }
 

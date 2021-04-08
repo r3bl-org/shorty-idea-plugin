@@ -2,7 +2,6 @@
 
 import TestUtils.Companion.computeBasePath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
-import java.io.Console
 import java.io.File
 
 /**
@@ -28,7 +27,7 @@ class TestUtils {
      */
     val computeBasePath by lazy {
       val urlFromClassloader =
-          TestUtils::class.java.classLoader.getResource("TestUtils.class")
+        TestUtils::class.java.classLoader.getResource("TestUtils.class")
       checkNotNull(urlFromClassloader) { "Could not find $testDataFolder" }
 
       var path: File? = File(urlFromClassloader.toURI())

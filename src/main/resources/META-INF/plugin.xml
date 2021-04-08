@@ -1,7 +1,7 @@
 <idea-plugin url="https://r3bl.com">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
-  <version>1.4</version>
+  <version>1.5</version>
   <vendor email="support@r3bl.com" url="https://r3bl.com/">
     R3BL LLC
   </vendor>
@@ -12,7 +12,7 @@
     complaining that it is not compatible.
     💡 More info: Please read http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
   -->
-  <idea-version since-build="2020.1" until-build="2020.*" />
+  <idea-version since-build="2020.1" until-build="2021.*" />
 
   <description>
     <![CDATA[
@@ -32,7 +32,7 @@
     💡 More info: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
   -->
   <change-notes>
-    Update plugin to support IntelliJ Platform 2020.2.
+    Update plugin to support IntelliJ Platform 2021.1.
   </change-notes>
 
   <!--
@@ -48,7 +48,7 @@
   <!-- Add action to replace inline link in Markdown file with something else. -->
   <actions>
     <action id="Shorty.EditorReplaceLink" class="actions.EditorReplaceLink" text="Shorten URL"
-        description="Replace URL with shortlink" icon="/icons/ic_extension.svg">
+      description="Replace URL with shortlink" icon="/icons/ic_extension.svg">
       <add-to-group group-id="EditorPopupMenu" anchor="first" />
     </action>
   </actions>

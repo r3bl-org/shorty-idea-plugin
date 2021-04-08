@@ -62,7 +62,7 @@ class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
     var myFlag: Boolean by object : LoggingProperty<State, Boolean>(false) {}
 
     override fun toString(): String =
-        "State{ myFlag: '$myFlag' }"
+      "State{ myFlag: '$myFlag' }"
 
     /** Factory class to generate synthetic properties, that log every access and mutation to each property. */
     open class LoggingProperty<R, T>(initValue: T) : ReadWriteProperty<R, T> {

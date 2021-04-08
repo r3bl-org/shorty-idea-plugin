@@ -14,12 +14,16 @@ const val GROUP_DISPAY_ID = "Shorty.Group"
  * @param second content of the notification
  */
 fun notify(first: String, second: String) = com.intellij.notification
-    .Notifications.Bus
-    .notify(Notification(GROUP_DISPAY_ID,
-                         first,
-                         second,
-                         NotificationType.INFORMATION,
-                         NotificationListener.URL_OPENING_LISTENER))
+  .Notifications.Bus
+  .notify(
+    Notification(
+      GROUP_DISPAY_ID,
+      first,
+      second,
+      NotificationType.INFORMATION,
+      NotificationListener.URL_OPENING_LISTENER
+    )
+  )
 
 fun isPluginInTestIDE(): Boolean = System.getProperty("idea.is.internal")?.toBoolean() ?: false
 
@@ -38,13 +42,13 @@ fun printWhichThread() {
  */
 private fun whichThread() = buildString {
   append(
-      when {
-        getApplication().isDispatchThread -> Red("Running on EDT")
-        else                              -> Green("Running on BGT")
-      }
+    when {
+      getApplication().isDispatchThread -> Red("Running on EDT")
+      else -> Green("Running on BGT")
+    }
   )
   append(
-      " - ${Thread.currentThread().name.take(50)}..."
+    " - ${Thread.currentThread().name.take(50)}..."
   )
 }
 

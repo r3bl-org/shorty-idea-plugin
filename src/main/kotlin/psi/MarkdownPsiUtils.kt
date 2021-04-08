@@ -39,11 +39,12 @@ class CheckCancelled(private val indicator: ProgressIndicator?, private val proj
     if (indicator.isCanceled) {
       colorConsole { printLine { span(Red, "Task was cancelled") } }
       ApplicationManager
-          .getApplication()
-          .invokeLater {
-            Messages.showWarningDialog(
-                project, "Task was cancelled", "Cancelled")
-          }
+        .getApplication()
+        .invokeLater {
+          Messages.showWarningDialog(
+            project, "Task was cancelled", "Cancelled"
+          )
+        }
     }
 
     indicator.checkCanceled()
@@ -78,14 +79,14 @@ fun findChildElement(element: PsiElement?, tokenSet: TokenSet, checkCancelled: C
   if (element == null) return null
 
   val processor: PsiElementProcessor.FindElement<PsiElement> =
-      object : PsiElementProcessor.FindElement<PsiElement>() {
-        // If found, returns false. Otherwise returns true.
-        override fun execute(each: PsiElement): Boolean {
-          checkCancelled?.invoke()
-          if (tokenSet.contains(each.node.elementType)) return setFound(each)
-          else return true
-        }
+    object : PsiElementProcessor.FindElement<PsiElement>() {
+      // If found, returns false. Otherwise returns true.
+      override fun execute(each: PsiElement): Boolean {
+        checkCancelled?.invoke()
+        if (tokenSet.contains(each.node.elementType)) return setFound(each)
+        else return true
       }
+    }
 
   element.accept(object : PsiRecursiveElementWalkingVisitor() {
     override fun visitElement(element: PsiElement) {
@@ -160,9 +161,9 @@ fun findLink(element: PsiElement?, psiFile: PsiFile, checkCancelled: CheckCancel
   }
 
   val linkTextElement =
-      findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_TEXT, checkCancelled)
+    findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_TEXT, checkCancelled)
   val linkDestinationElement =
-      findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_DESTINATION, checkCancelled)
+    findChildElement(parentLinkElement, MarkdownTokenTypeSets.LINK_DESTINATION, checkCancelled)
 
   val linkText = linkTextElement?.text?.removePrefix("[")?.removeSuffix("]")
   val linkDestination = linkDestinationElement?.text
@@ -181,16 +182,17 @@ fun findLink(element: PsiElement?, psiFile: PsiFile, checkCancelled: CheckCancel
 fun replaceExistingLinkWith(project: Project, newLinkNode: LinkNode, checkCancelled: CheckCancelled?) {
   // Create a replacement link destination.
   val replacementLinkElement =
-      createNewLinkElement(project, newLinkNode.linkText, newLinkNode.linkDestination, checkCancelled)
+    createNewLinkElement(project, newLinkNode.linkText, newLinkNode.linkDestination, checkCancelled)
 
   // Replace the original link destination in the [parentLinkElement] w/ the new one.
   if (replacementLinkElement != null) newLinkNode.parentLinkElement.replace(replacementLinkElement)
 }
 
-fun createNewLinkElement(project: Project,
-                         linkText: String,
-                         linkDestination: String,
-                         checkCancelled: CheckCancelled?
+fun createNewLinkElement(
+  project: Project,
+  linkText: String,
+  linkDestination: String,
+  checkCancelled: CheckCancelled?
 ): PsiElement? {
   val markdownText = "[$linkText]($linkDestination)"
   val newFile = MarkdownPsiElementFactory.createFile(project, markdownText)
@@ -199,4 +201,4 @@ fun createNewLinkElement(project: Project,
 }
 
 fun langSetContains(set: Set<Language>, language: String): Boolean =
-    set.any { language.equals(it.id, ignoreCase = true) }
+  set.any { language.equals(it.id, ignoreCase = true) }
