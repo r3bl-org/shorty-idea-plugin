@@ -1,10 +1,10 @@
 plugins {
-  id("org.jetbrains.intellij") version "0.7.2"
-  kotlin("jvm") version "1.4.32"
+  id("org.jetbrains.intellij") version "1.0"
+  kotlin("jvm") version "1.5.10"
 }
 
 group = "com.r3bl.plugins"
-version = "1.5"
+version = "1.6"
 
 repositories {
   mavenCentral()
@@ -21,13 +21,19 @@ intellij {
   // You can use release build numbers or snapshot name for the version.
   // 1) IJ Release Repository w/ build numbers https://www.jetbrains.com/intellij-repository/releases/
   // 2) IJ Snapshots Repository w/ snapshot names https://www.jetbrains.com/intellij-repository/snapshots/
-  version = "211.6693.111" // You can also use LATEST-EAP-SNAPSHOT here.
+  version.set("2020.2.4") // You can also use LATEST-EAP-SNAPSHOT here.
 
   // Declare a dependency on the markdown plugin to be able to access the
   // MarkdownRecursiveElementVisitor.kt file. More info:
   // https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
   // https://plugins.jetbrains.com/plugin/7793-markdown/versions
-  setPlugins("java", "markdown")
+  plugins.set(listOf("java", "markdown"))
+}
+
+tasks {
+  buildSearchableOptions {
+    enabled = false
+  }
 }
 
 tasks {
@@ -56,14 +62,14 @@ dependencies {
 tasks.publishPlugin {
   // The property named "intellijPublishToken" is loaded from gradle.properties file.
   val intellijPublishToken: String? by project
-  token(intellijPublishToken)
+  token.set(intellijPublishToken)
   // The following line does the same thing as above:
   // token(project.findProperty(intellijPublishToken) as String?)
 }
 
 tasks {
   runPluginVerifier {
-    ideVersions(listOf<String>("2020.1.4", "2020.2.3", "2020.3.3", "2021.1"))
+    ideVersions.set(listOf("2020.2.4", "2020.3.4", "2021.1.1"))
   }
 }
 
