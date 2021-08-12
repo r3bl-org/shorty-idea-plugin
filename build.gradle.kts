@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.r3bl.plugins"
-version = "1.6"
+version = "1.7"
 
 repositories {
   mavenCentral()
@@ -21,7 +21,7 @@ intellij {
   // You can use release build numbers or snapshot name for the version.
   // 1) IJ Release Repository w/ build numbers https://www.jetbrains.com/intellij-repository/releases/
   // 2) IJ Snapshots Repository w/ snapshot names https://www.jetbrains.com/intellij-repository/snapshots/
-  version.set("2020.2.4") // You can also use LATEST-EAP-SNAPSHOT here.
+  version.set("2021.2") // You can also use LATEST-EAP-SNAPSHOT here.
 
   // Declare a dependency on the markdown plugin to be able to access the
   // MarkdownRecursiveElementVisitor.kt file. More info:
