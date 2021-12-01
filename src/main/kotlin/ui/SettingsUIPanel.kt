@@ -3,7 +3,11 @@ package ui
 import color_console_log.ColorConsoleContext.Companion.colorConsole
 import color_console_log.Colors.*
 import com.intellij.ide.BrowserUtil
-import com.intellij.openapi.components.*
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.components.PersistentStateComponent
+import com.intellij.openapi.components.Service
+import com.intellij.openapi.components.State
+import com.intellij.openapi.components.Storage
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.layout.panel
 import kotlin.properties.ReadWriteProperty
@@ -33,7 +37,7 @@ fun createDialogPanel(): DialogPanel {
 class SettingsUIData : PersistentStateComponent<SettingsUIData.State> {
   companion object {
     val instance: SettingsUIData
-      get() = ServiceManager.getService(SettingsUIData::class.java)
+      get() = ApplicationManager.getApplication().getService(SettingsUIData::class.java)
   }
 
   var myState = State()

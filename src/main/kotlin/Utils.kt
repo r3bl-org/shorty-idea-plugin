@@ -1,7 +1,6 @@
 import color_console_log.ColorConsoleContext.Companion.colorConsole
 import color_console_log.Colors.*
 import com.intellij.notification.Notification
-import com.intellij.notification.NotificationListener
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ApplicationManager.getApplication
@@ -21,7 +20,6 @@ fun notify(first: String, second: String) = com.intellij.notification
       first,
       second,
       NotificationType.INFORMATION,
-      NotificationListener.URL_OPENING_LISTENER
     )
   )
 

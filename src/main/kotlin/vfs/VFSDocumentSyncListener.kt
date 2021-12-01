@@ -34,7 +34,7 @@ class VFSListenerStartupActivity : StartupActivity {
         span(Purple, "postStartupActivity running")
       }
     }
-    VFSListenerLightService.getInstance(project).registerListener()
+    VFSListenerLightService.instance(project).registerListener()
   }
 }
 
@@ -43,11 +43,12 @@ class VFSListenerLightService(
   /** One instance of this service is created per project. */
   private val project: Project
 ) {
+
   companion object {
     /**
      * This is used by IDEA to get a reference to the single instance of this service (used by [ServiceManager]).
      */
-    fun getInstance(project: Project) = ServiceManager.getService(project, VFSListenerLightService::class.java)
+    fun instance(project: Project): VFSListenerLightService = project.getService(VFSListenerLightService::class.java)
   }
 
   fun registerListener() {

@@ -73,7 +73,7 @@ fun createConditionalRunnerScope(block: FunctionCollector.() -> Unit) {
   block(myFunctionCollector)
 }
 
-class FunctionCollector() {
+class FunctionCollector {
   lateinit var conditionBlock: () -> Boolean
   val lambdaList: MutableList<() -> Unit> = mutableListOf()
 

@@ -1,7 +1,7 @@
 <idea-plugin url="https://r3bl.com">
   <id>com.r3bl.plugins.shorty</id>
   <name>Shorty - URL Shortener</name>
-  <version>1.7</version>
+  <version>1.8</version>
   <vendor email="support@r3bl.com" url="https://r3bl.com/">
     R3BL LLC
   </vendor>
@@ -12,7 +12,7 @@
     complaining that it is not compatible.
     💡 More info: Please read http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
   -->
-  <idea-version since-build="201.*" until-build="212.*" />
+  <idea-version since-build="201.*" until-build="213.*" />
 
   <description>
     <![CDATA[
